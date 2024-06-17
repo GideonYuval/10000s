@@ -13,7 +13,7 @@ namespace _10000
         }
     }
 
-    class Contract
+    public class Contract
     {
         private string name;
         private int days;
@@ -25,9 +25,16 @@ namespace _10000
             this.days = days;
             this.kilo = kilo;
         }
+
+        public int GetDays()
+        { return days; }
+
+        public int GetKilo()
+            { return kilo; }
+
     }
 
-    class Vehicle
+    public class Vehicle
     {
         private string id;
         private Contract contract;
@@ -37,10 +44,16 @@ namespace _10000
             this.id = id;
             this.contract = new Contract(name, days, kilo);
         }
+
+        public virtual double Payment () //סעיף ג1
+        //note - need virtual so we can override this in derived functions
+        {
+            return 60*contract.GetDays()+2*contract.GetKilo();
+        }
         
     }
 
-    class Car : Vehicle
+    public class Car : Vehicle
     {
         private int seats;
 
@@ -50,14 +63,33 @@ namespace _10000
         }
     }
 
-    class Truck: Vehicle //error because no constructor (not required by Q)
+    public class Truck : Vehicle 
     {
         private int max;
 
+        public Truck(string name, int days, int kilo, string id) : base(name, days, kilo, id) //not required!
+        {
+        }
+
+        public override double Payment()
+        //the below is the correct way - use the base, then add 500. rather than reimplement the base
+        {
+            return base.Payment()+500;
+        }
+
     }
 
-    class Motorcycle: Vehicle //error because no constructor (not required by Q)
+    public class Motorcycle : Vehicle 
     {
         private bool offRoad;
+
+        public Motorcycle(string name, int days, int kilo, string id) : base(name, days, kilo, id) //not required!
+        {
+        }
+
+        public override double Payment()
+        {
+            return base.Payment() /2;
+        }
     }
 }
