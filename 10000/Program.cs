@@ -39,7 +39,7 @@ namespace _10000
         private string id;
         private Contract contract;
 
-        public Vehicle (string name, int days, int kilo, string id)
+        public Vehicle (string name, int days, int kilo, string id) //ב1
         {
             this.id = id;
             this.contract = new Contract(name, days, kilo);
@@ -57,6 +57,7 @@ namespace _10000
     {
         private int seats;
 
+        //ב2
         public Car(string name, int days, int kilo, string id, int seats): base(name, days, kilo, id)
         {
             this.seats = seats;
@@ -72,7 +73,8 @@ namespace _10000
         }
 
         public override double Payment()
-        //the below is the correct way - use the base, then add 500. rather than reimplement the base
+        //use the base method, then add 500. rather than reimplement the base
+        //note - without writing base, this function would recursively call itself
         {
             return base.Payment()+500;
         }
