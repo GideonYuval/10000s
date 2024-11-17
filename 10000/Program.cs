@@ -62,6 +62,17 @@ namespace _10000
         {
             this.seats = seats;
         }
+
+        //ג2
+        //מחיר ההשכרה על מכונית הוא לפי המחיר הבסיסי, לכן לא צריך לממש פה כלום
+        //אם יקראו לפעולה Payment, פשוט תופעל הפעולה של Vehicle
+        //אם הייתי מתעקש לממש את זה, פשוט הייתי כותב כך
+/*
+        public override double Payment() 
+        {
+            return base.Payment();
+        }
+*/
     }
 
     public class Truck : Vehicle 
@@ -72,9 +83,8 @@ namespace _10000
         {
         }
 
-        public override double Payment()
+        public override double Payment() //ג2
         //use the base method, then add 500. rather than reimplement the base
-        //note - without writing base, this function would recursively call itself
         {
             return base.Payment()+500;
         }
@@ -89,7 +99,7 @@ namespace _10000
         {
         }
 
-        public override double Payment()
+        public override double Payment() //ג2
         {
             return base.Payment() /2;
         }
